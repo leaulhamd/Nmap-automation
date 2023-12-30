@@ -9,8 +9,9 @@ This Bash script provides a collection of network scanning and enumeration tools
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repository.git
-    cd your-repository
+    git clone [https://github.com/your-username/your-repository.git](https://github.com/leaulhamd/Nmap-automation.git)
+    cd Nmap-automation
+    sudo chmod +x nmap-automation.sh
     ```
 
 2. Execute the script:
