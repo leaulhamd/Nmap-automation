@@ -3,55 +3,47 @@
 # Function to perform ping scan
 perform_ping_scan() {
     echo "Performing Ping Scan for target IP: $target_ip"
+    echo "--------------------------------------------------------------------------"
+    echo ">>	Command: ping -c 4 $target_ip	<<"
+    echo "--------------------------------------------------------------------------"
     ping -c 4 $target_ip  # Modify the ping command as needed
-    save_or_not
+    #save_or_not
 }
 
 # Function to save the scan results to a text file
-save_results() {
-    read -p "Enter the file name to save the scan results file: " save_path
-    if [ -n "$save_path" ]; then
-        echo "Saving the scan results to $save_path..."
-        nmap -T $timing_value -p 1-1024 $target_ip > "$save_path" 2>&1
-        if [ $? -eq 0 ]; then
-            echo "Scan results have been saved to $save_path."
-        else
-            echo "Failed to save scan results."
-        fi
-    else
-        echo "Invalid path. Results not saved."
-    fi
-}
+
 
 # Function to perform host discovery without ping
 perform_host_discovery_without_ping() {
     echo "Performing Host Discovery without Ping for target IP: $target_ip"
+    echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -Pn $target_ip	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -Pn $target_ip  # Perform host discovery without ping using nmap
-    save_or_not
+    #save_or_not
 }
 
 # Function to perform basic port scanning
 perform_basic_port_scan() {
     echo "Performing Basic Port Scan for target IP: $target_ip with timing and performance value: $timing_value"
+    echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -T $timing_value -p 1-1024 $target_ip	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -T $timing_value -p 1-1024 $target_ip 2>&1  # Perform basic port scanning with specified timing value
-    save_or_not
+    #save_or_not
 }
 
 # Function to save scan results or go back to the previous menu
-save_or_not() {
-    read -p "Do you want to save the scan results to a text file? (yes/no): " save_choice
-    if [ "$save_choice" = "yes" ]; then
-        save_results
-    else
-        go_back
-    fi
-}
+
 
 # Function to perform full port scanning
 perform_full_port_scan() {
     echo "Performing Full Port Scan for target IP: $target_ip with timing and performance value: $timing_value"
+    echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -T $timing_value -p- $target_ip  	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -T $timing_value -p- $target_ip 
-    save_or_not
+    #save_or_not
     # Rest of the script remains the same...
 }
 
@@ -63,72 +55,108 @@ perform_full_port_scan() {
 # Function to perform TCP Connect Scan
 perform_tcp_connect_scan() {
     echo "Performing TCP Connect Scan for target IP: $target_ip"
+    echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -T $timing_value -sT $target_ip  	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -T $timing_value -sT $target_ip  # Perform TCP Connect Scan with specified timing value
 }
 
 # Function to perform SYN Scan
 perform_syn_scan() {
     echo "Performing SYN Scan for target IP: $target_ip"
+    echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sS $target_ip  	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sS $target_ip  # Perform SYN Scan
 }
 
 # Function to perform ACK Scan
 perform_ack_scan() {
     echo "Performing ACK Scan for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sA $target_ip   	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sA $target_ip  # Perform ACK Scan
 }
 
 # Function to perform FIN Scan
 perform_fin_scan() {
     echo "Performing FIN Scan for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sF $target_ip   	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sF $target_ip  # Perform FIN Scan
 }
 
 # Function to perform Null Scan
 perform_null_scan() {
     echo "Performing Null Scan for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sN $target_ip  	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sN $target_ip  # Perform Null Scan
 }
 
 # Function to perform Xmas Scan
 perform_xmas_scan() {
     echo "Performing Xmas Scan for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sX $target_ip   	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sX $target_ip  # Perform Xmas Scan
 }
 
 # Function to perform IDLE Scan (Zombie Scan)
 perform_idle_scan() {
     echo "Performing IDLE Scan (Zombie Scan) for target IP: $target_ip using zombie host: $zombie_host"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sI $zombie_host $target_ip   	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sI $zombie_host $target_ip  # Perform IDLE Scan (Zombie Scan) with the specified zombie host
 }
 
 # Function to perform UDP Scan
 perform_udp_scan() {
     echo "Performing UDP Scan for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sU $target_ip  	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sU $target_ip  # Perform UDP Scan
 }
 
 # Function to perform Service Version Detection
 perform_service_version_detection() {
     echo "Performing Service Version Detection for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sV $target_ip   	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sV $target_ip  # Perform Service Version Detection
 }
 
 # Function to perform OS Scan
 perform_os_scan() {
     echo "Performing OS Scan for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -O $target_ip    	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -O $target_ip  # Perform OS Scan
 }
 
 # Function to perform NSE (Nmap Scripting Engine)
 perform_nse() {
     echo "Performing NSE (Nmap Scripting Engine) for target IP: $target_ip"
+     echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -sC $target_ip   	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -sC $target_ip  # Perform NSE
 }
 
 # Function to perform Aggressive Scan
 perform_aggressive_scan() {
     echo "Performing Aggressive Scan for target IP: $target_ip"
+    echo "--------------------------------------------------------------------------"
+    echo ">>	Command: nmap -T4 -A $target_ip   	<<"
+    echo "--------------------------------------------------------------------------"
     nmap -T4 -A $target_ip  # Perform Aggressive Scan
 }
 
@@ -159,9 +187,11 @@ echo "| \| |  \/  | /_\ | _ \ | _ ) \ / / |  \/  |/ _ \| __| __| \| |"
 echo "| .' | |\/| |/ _ \|  _/ | _ \' V /  | |\/| | (_) | _|| _|| .' |"
 echo "|_|\_|_|  |_/_/ \_\_|   |___/ |_|   |_|  |_|\___/|___|___|_|\_|"
 echo "                                                               "
-echo "                                                               "
-
-    read -p "Enter the target IP address: " target_ip
+    echo "--------------------------------------------------------------"
+    echo "  For any queries please contact : leaulhamdmoeen@gmail.com"
+    echo "--------------------------------------------------------------"
+    echo "                                                               "
+    read -p ">> Enter the target address: " target_ip
 
     while true; do
         echo "Choose an option:"
